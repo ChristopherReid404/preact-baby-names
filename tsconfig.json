@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src",
+    "sourceMap": true,
+    "module": "esnext",
+    "target": "es5",
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "jsx": "react",
+    "jsxFactory": "h"
+  },
+  "include": [
+    "src/*.ts",
+    "src/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

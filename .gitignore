@@ -1,0 +1,17 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# node dependencies
+node_modules
+
+# production builds
+dist
+
+# testing coverage
+coverage
+
+# development folder
+scraps
+
+# generated files
+package-lock.json
+yarn-error.log

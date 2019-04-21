@@ -1,0 +1,9 @@
+version: '2.2'
+services:
+  preact-baby-names:
+    build:
+      context: .
+      dockerfile: ./internals/docker/Dockerfile
+    ports:
+    - "7000:80"
+    - "7005:443"
