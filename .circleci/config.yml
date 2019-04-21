@@ -28,3 +28,8 @@ jobs:
           path: coverage
           prefix: coverage
           when: on_success
+workflows:
+  version: 2.1
+  build_and_test
+    jobs:
+      - build
