@@ -63,14 +63,6 @@ module.exports = (options) => ({
 				use: ['style-loader', 'css-loader'],
 			},
 			{
-				test: /\.sass$/,
-				use: [
-					{ loader: 'style-loader' },
-					{ loader: 'css-loader', options: { sourceMap: process.env.NODE_ENV !== 'production' } },
-					{ loader: 'sass-loader', options: { sourceMap: process.env.NODE_ENV !== 'production' } },
-				],
-			},
-			{
 				test: /\.svg$/,
 				use: [
 					{
@@ -84,38 +76,14 @@ module.exports = (options) => ({
 				],
 			},
 			{
-				test: /\.(png|webp|jpg|jpeg|gif|pdf|ico)$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							// Inline files smaller than 10 kB
-							limit: 10 * 1024,
-						},
-					},
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							mozjpeg: {
-								enabled: false,
-								// NOTE: mozjpeg is disabled as it causes errors in some Linux environments
-								// Try enabling it in your environment by switching the config to:
-								// enabled: true,
-								// progressive: true,
-							},
-							gifsicle: {
-								interlaced: false,
-							},
-							optipng: {
-								optimizationLevel: 7,
-							},
-							pngquant: {
-								quality: '65-90',
-								speed: 4,
-							},
-						},
-					},
-				],
+				test: /\.(jpg|jpeg|gif|png)$/,
+				exclude: /node_modules/,
+				loader: 'url-loader?limit=1024&name=images/[name].[ext]'
+			},
+			{
+				test: /\.(woff|woff2|eot|ttf|svg)$/,
+				exclude: /node_modules/,
+				loader: 'url-loader?limit=1024&name=fonts/[name].[ext]'
 			},
 			{
 				test: /\.html$/,

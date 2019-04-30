@@ -3,7 +3,7 @@ FROM node:10 as build-stage
 WORKDIR /app
 
 COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
+COPY package-lock.json /app/package-lock.json
 
 RUN yarn install
 

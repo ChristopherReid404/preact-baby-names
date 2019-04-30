@@ -2,34 +2,54 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/preact-baby-names
     docker:
       - image: circleci/node:latest
     steps:
       - checkout
       - restore_cache:
-          name: Restore Yarn Package Cache
+          name: Restore Npm Package Cache
           keys:
-            - preact-baby-names-cache-{{ checksum "yarn.lock" }}
+            - preact-baby-names-cache-{{ checksum "package-lock.json" }}
             - preact-baby-names-cache-
       - run:
           name: Installing Dependencies
-          command: yarn install
+          command: npm install
       - save_cache:
-          name: Save Yarn Package Cache
+          name: Save Npm Package Cache
           paths:
             - node_modules/
-          key: preact-baby-names-cache-{{ checksum "yarn.lock" }}
+          key: preact-baby-names-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Running Tests
-          command: yarn test-ci
+          command: npm run test-ci
           no_output_timeout: "30s"
       - store_artifacts:
           path: coverage
           prefix: coverage
           when: on_success
+  deploy:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Installing Dependencies
+          command: npm install
+      - run:
+          name: Build production
+          command: npm run build
+      - run:
+          name: Deploy to S3
+          command: aws s3 sync ./dist s3://preact-baby-names
+
+
 workflows:
   version: 2.1
   build_and_test:
     jobs:
       - build
+      # - deloy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master

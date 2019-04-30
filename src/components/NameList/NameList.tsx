@@ -3,7 +3,7 @@
  */
 import { h } from 'preact'
 
-import './NameList.styles.sass'
+import './NameList.styles.css'
 
 interface Props {
 	id?: string
