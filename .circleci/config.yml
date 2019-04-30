@@ -28,28 +28,33 @@ jobs:
           prefix: coverage
           when: on_success
   deploy:
-    machine: true
+    docker:
+      - image: circleci/node:latest
     steps:
       - checkout
       - run:
-          name: Installing Dependencies
-          command: npm install
+          name: Install AWS Cli
+          command: sudo pip install awscli
+      - restore_cache:
+          name: Restore Npm Package Cache
+          keys:
+            - preact-baby-names-cache-{{ checksum "package-lock.json" }}
+            - preact-baby-names-cache-
       - run:
-          name: Build production
+          name: Build Production Bundles
           command: npm run build
       - run:
           name: Deploy to S3
-          command: aws s3 sync ./dist s3://preact-baby-names
-
+          command: aws s3 sync ./dist s3://preact-baby-names --delete
 
 workflows:
   version: 2.1
   build_and_test:
     jobs:
       - build
-      # - deloy:
-      #     requires:
-      #       - build
-      #     filters:
-      #       branches:
-      #         only: master
+      - deloy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
