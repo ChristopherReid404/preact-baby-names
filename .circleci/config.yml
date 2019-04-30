@@ -2,7 +2,6 @@
 version: 2.1
 jobs:
   build:
-    # working_directory: ~/preact-baby-names
     docker:
       - image: circleci/node:latest
     steps:
@@ -30,7 +29,6 @@ jobs:
           when: on_success
   deploy:
     machine: true
-    working_directory: ~/__workingDir__
     steps:
       - checkout
       - run:
@@ -43,14 +41,15 @@ jobs:
           name: Deploy to S3
           command: aws s3 sync ./dist s3://preact-baby-names
 
+
 workflows:
   version: 2.1
   build_and_test:
     jobs:
       - build
-      - deloy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      # - deloy:
+      #     requires:
+      #       - build
+      #     filters:
+      #       branches:
+      #         only: master
