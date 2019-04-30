@@ -1,0 +1,13 @@
+/*
+ * Button  ((styles))
+ */
+.button {
+  display: inline-block;
+  padding: 4px;
+  width: 150px;
+  margin: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #FFFFFF;
+}

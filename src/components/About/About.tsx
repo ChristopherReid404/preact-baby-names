@@ -10,7 +10,7 @@ import Image from '../Image/Image'
 import { colors } from '../../data/Colors'
 const img = require('../../images/logo_192.png')
 
-import './About.styles.sass'
+import './About.styles.css'
 
 const About = (props: any) => {
 	const fields = [

@@ -3,7 +3,7 @@
  */
 import { h } from 'preact'
 
-import './Button.styles.sass'
+import './Button.styles.css'
 
 interface Props {
 	id: string

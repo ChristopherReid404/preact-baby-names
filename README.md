@@ -1,7 +1,9 @@
 # preact-baby-names
 
+[![Build](https://img.shields.io/circleci/project/github/ChristopherReid404/preact-baby-names/master.svg?style=svg)](https://img.shields.io/circleci/project/github/ChristopherReid404/preact-baby-names/master)
 [![Coverage Status](https://coveralls.io/repos/github/ChristopherReid404/preact-baby-names/badge.svg?branch=master)](https://coveralls.io/github/ChristopherReid404/preact-baby-names?branch=master)
-[![CircleCI](https://circleci.com/gh/ChristopherReid404/preact-baby-names.svg?style=svg)](https://circleci.com/gh/ChristopherReid404/preact-baby-names)
+[![Version](https://img.shields.io/github/package-json/v/ChristopherReid404/preact-baby-names.svg?style=svg)](https://img.shields.io/github/package-json/v/ChristopherReid404/preact-baby-names)
+[![License](https://img.shields.io/github/license/ChristopherReid404/preact-baby-names.svg?style=svg)](https://img.shields.io/github/license/ChristopherReid404/preact-baby-names)
 
 Small Preact App Displaying Random Boy or Girl Names
 

@@ -13,5 +13,7 @@ coverage
 scraps
 
 # generated files
-package-lock.json
-yarn-error.log
+yarn.lock
+yarn-error.log*
+# package-lock.json
+npm-debug.log*

@@ -15,7 +15,7 @@ import { boyNames } from '../../data/BoyNames'
 import { colors } from '../../data/Colors'
 const img = require('../../images/logo_192.png')
 
-import './NamePicker.styles.sass'
+import './NamePicker.styles.css'
 
 interface Props { }
 

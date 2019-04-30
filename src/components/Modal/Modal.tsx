@@ -5,7 +5,7 @@ import { h } from 'preact'
 
 import Button from '../Button/Button'
 
-import './Modal.styles.sass'
+import './Modal.styles.css'
 
 interface Props {
 	title: string
