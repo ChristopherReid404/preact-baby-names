@@ -2,10 +2,11 @@
   "compilerOptions": {
     "rootDir": "./src",
     "sourceMap": true,
-    "module": "esnext",
+    "module": "commonjs",
     "target": "es5",
     "lib": [
-      "es6",
+      "es2015",
+      "es2017",
       "dom"
     ],
     "declaration": true,

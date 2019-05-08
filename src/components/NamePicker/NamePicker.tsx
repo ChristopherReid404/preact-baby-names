@@ -6,14 +6,13 @@ import { h, Component } from 'preact'
 import { route } from 'preact-router'
 
 import Button from '../Button/Button'
-import Image from '../Image/Image'
+import Picture from '../Picture/Picture'
 import Modal from '../Modal/Modal'
 import NameList from '../NameList/NameList'
 
 import { girlNames } from '../../data/GirlNames'
 import { boyNames } from '../../data/BoyNames'
 import { colors } from '../../data/Colors'
-const img = require('../../images/logo_192.png')
 
 import './NamePicker.styles.css'
 
@@ -124,12 +123,15 @@ class NamePicker extends Component<Props, State> {
 				id={'name-picker'}
 				style={{ backgroundColor: color }}
 			>
-				<Image
-					id={'name-picker__logo'}
-					src={img}
-					alt={'logo'}
-					height={192}
-					width={192}
+				<Picture
+					id={'picker__logo'}
+					srcPng={'../../../assets/logo_192.png'}
+					srcWebp={'../../../assets/logo_192.webp'}
+					alt={'Logo'}
+					minWidth={'15vh'}
+					minHeight={'15vh'}
+					maxWidth={'25vh'}
+					maxHeight={'25vh'}
 				/>
 				<h1 id={'name-picker__title'}>
 					{name + (star ? '*' : '')}

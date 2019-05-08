@@ -10,13 +10,17 @@
     "pretest": "npm run lint && npm run clean:test",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./internals/webpack/webpack.config.dev.js",
     "build": "cross-env NODE_ENV=production webpack --config ./internals/webpack/webpack.config.prod.js --color -p --progress --hide-modules --display=verbose",
-    "test": "cross-env NODE_ENV=testing jest --coverage -w 1",
+    "test": "cross-env NODE_ENV=testing jest --config internals/configs/jest.json --coverage -w 1",
     "test-ci": "npm run test && npm run coveralls",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "bundle-report": "webpack-bundle-analyzer --port 8050 dist/stats.json",
-    "lint": "npm run lint:ts && npm run prettier",
-    "lint:ts": "tslint -c tslint.json 'src/*.{ts,tsx}' --fix",
-    "prettier": "prettier --write 'src/*.{ts,tsx}'",
+    "generate-bundle-report": "npm run prebuild && cross-env BUNDLE_REPORT=true NODE_ENV=production webpack --config ./internals/webpack/webpack.config.prod.js --hide-modules",
+    "bundle-report": "npm run generate-bundle-report && webpack-bundle-analyzer --port 8050 dist/stats.json",
+    "lint": "npm run tslint && npm run prettier",
+    "lint:fix": "npm run tslint:fix && npm run prettier:fix",
+    "tslint": "tslint  -c internals/configs/tslint.json 'src/**.{ts,tsx}'",
+    "tslint:fix": "tslint  -c internals/configs/tslint.json 'src/**.{ts,tsx}' --fix",
+    "prettier": "prettier --config internals/configs/prettier.json 'src/**.{ts,tsx}'",
+    "prettier:fix": "prettier --config internals/configs/prettier.json --write 'src/**.{ts,tsx}'",
     "clean:build": "rimraf dist/",
     "clean:modules": "rimraf node_modules/",
     "clean:test": "rimraf coverage/"
@@ -105,40 +109,5 @@
   ],
   "files": [
     "/dist"
-  ],
-  "jest": {
-    "preset": "ts-jest/presets/default",
-    "testEnvironment": "jsdom",
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "coverageThreshold": {
-      "global": {
-        "statements": 65,
-        "branches": 42,
-        "functions": 42,
-        "lines": 69
-      }
-    },
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
-    "moduleNameMapper": {
-      ".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
-      ".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js",
-      "^react$": "preact-compat",
-      "^react-dom$": "preact-compat"
-    },
-    "verbose": true
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "useTabs": true,
-    "singleQuote": true,
-    "bracketSpacing": true,
-    "semi": false,
-    "tabWidth": 4,
-    "arrowParens": "always"
-  }
+  ]
 }
