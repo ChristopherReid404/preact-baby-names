@@ -78,7 +78,7 @@ module.exports = (options) => ({
 			{
 				test: /\.(jpg|jpeg|gif|png)$/,
 				exclude: /node_modules/,
-				loader: 'url-loader?limit=1024&name=images/[name].[ext]'
+				loader: 'url-loader?limit=1024&name=assets/[name].[ext]'
 			},
 			{
 				test: /\.(woff|woff2|eot|ttf|svg)$/,
@@ -99,12 +99,12 @@ module.exports = (options) => ({
 			fileName: 'manifest.json',
 			writeToFileEmit: true,
 			seed: {
-				name: JSON.stringify(require('../../package.json').name) || '-',
+				name: "Preact Baby Names",
 				version: JSON.stringify(require('../../package.json').version) || '-',
 				short_name: JSON.stringify(require('../../package.json').short_name) || '-',
 				description: JSON.stringify(require('../../package.json').description) || '-',
 				theme_color: '#F34E85',
-				background_color: '#ffffff',
+				background_color: '#FFFFFF',
 				start_url: '/',
 				display: 'standalone',
 				orientation: 'portrait',
@@ -131,7 +131,7 @@ module.exports = (options) => ({
 		}),
 		new HtmlWebpackPlugin({
 			template: path.join(process.cwd(), 'src/index.html'),
-			favicon: path.join(process.cwd(), 'src/images/favicon.ico'),
+			favicon: path.join(process.cwd(), 'src/favicon.ico'),
 			minify: {
 				...options.minify,
 			},

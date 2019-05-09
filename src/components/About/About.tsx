@@ -5,14 +5,13 @@ import { h } from 'preact'
 import { route } from 'preact-router'
 
 import Button from '../Button/Button'
-import Image from '../Image/Image'
+import Picture from '../Picture/Picture'
 
 import { colors } from '../../data/Colors'
-const img = require('../../images/logo_192.png')
 
 import './About.styles.css'
 
-const About = (props: any) => {
+const About = () => {
 	const fields = [
 		{ title: 'Environment', value: process.env.NODE_ENV },
 		{ title: 'Version', value: process.env.VERSION, trigger: true },
@@ -34,12 +33,15 @@ const About = (props: any) => {
 			/>
 			<div id={'about__card'}>
 				<h2 id={'about__title'}>About</h2>
-				<Image
+				<Picture
 					id={'about__logo'}
-					src={img}
+					srcPng={'../../../assets/logo_192.png'}
+					srcWebp={'../../../assets/logo_192.webp'}
 					alt={'Logo'}
-					width={192}
-					height={192}
+					minWidth={'15vh'}
+					minHeight={'15vh'}
+					maxWidth={'25vh'}
+					maxHeight={'25vh'}
 				/>
 				<div id={'about__fields'}>
 					{fields.map((item, key) => (

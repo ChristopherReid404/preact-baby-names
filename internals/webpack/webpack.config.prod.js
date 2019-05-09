@@ -7,6 +7,15 @@ const OfflinePlugin = require('offline-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
+const BundleAnalyzer = process.env.BUNDLE_REPORT === 'true' ? [
+	new BundleAnalyzerPlugin({
+		openAnalyzer: false,
+		analyzerMode: 'disabled',
+		defaultSizes: 'gzip',
+		generateStatsFile: true
+	}),
+] : []
+
 module.exports = require('./webpack.config.base')({
 	mode: 'production',
 	devtool: 'source-map',
@@ -71,32 +80,40 @@ module.exports = require('./webpack.config.base')({
 	},
 	plugins: [
 		new webpack.optimize.AggressiveMergingPlugin(), //Merge chunks
-		new CompressionPlugin({
-			algorithm: 'gzip',
-			test: /\.(js|css|ttf|svg|eot)$/,
-			threshold: 10240,
-		}),
-		new OfflinePlugin({
-			relativePaths: false,
-			publicPath: '/',
-			appShell: '/',
-			caches: 'all',
-			// Removes warning for about `additional` section usage
-			safeToUseOptionalCaches: true,
-			// AppCache: false,
-			autoUpdate: true,
-			updateStrategy: 'all'
-		}),
 		new webpack.HashedModuleIdsPlugin({
 			hashFunction: 'sha256',
 			hashDigest: 'hex',
 			hashDigestLength: 20,
 		}),
-		new BundleAnalyzerPlugin({
-			openAnalyzer: false,
-			analyzerMode: 'disabled',
-			defaultSizes: 'gzip',
-			generateStatsFile: true
+		new OfflinePlugin({
+			relativePaths: false,
+			publicPath: '/',
+			appShell: '/',
+			caches: {
+				main: [
+					'main.*.js',
+					'npm.*',
+					'index.html'
+				],
+				additional: [
+					':rest:'
+				]
+			},
+			ServiceWorker: {
+				events: true
+			},
+			AppCache: {
+				events: true
+			},
+			safeToUseOptionalCaches: true,
+			autoUpdate: true,
+			updateStrategy: 'all'
 		}),
+		new CompressionPlugin({
+			algorithm: 'gzip',
+			test: /\.(js|css|ttf|svg|eot)$/,
+			threshold: 0,
+		}),
+		...BundleAnalyzer
 	],
 })

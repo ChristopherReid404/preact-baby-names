@@ -1,0 +1,27 @@
+{
+	"preset": "ts-jest/presets/default",
+	"rootDir": "../../",
+	"testEnvironment": "jsdom",
+	"transform": {
+		"^.+\\.ts$": "ts-jest"
+	},
+	"coverageThreshold": {
+		"global": {
+			"statements": 64,
+			"branches": 42,
+			"functions": 42,
+			"lines": 68
+		}
+	},
+	"moduleDirectories": [
+		"node_modules",
+		"src"
+	],
+	"moduleNameMapper": {
+		".*\\.(css|less|styl|scss|sass)$": "<rootDir>/internals/mocks/cssModule.js",
+		".*\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/image.js",
+		"^react$": "preact-compat",
+		"^react-dom$": "preact-compat"
+	},
+	"verbose": true
+}
