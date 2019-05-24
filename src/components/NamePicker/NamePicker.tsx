@@ -121,13 +121,14 @@ class NamePicker extends Component<Props, State> {
 		return (
 			<div
 				id={'name-picker'}
-				style={{ backgroundColor: color, paddingTop: '15%' }}
+				style={{ backgroundColor: color }}
 			>
 				<Picture
 					id={'picker__logo'}
 					srcPng={'../../../assets/logo_192.png'}
 					srcWebp={'../../../assets/logo_192.webp'}
 					alt={'Logo'}
+					style={{ paddingTop: '12%' }}
 					minWidth={'15vh'}
 					minHeight={'15vh'}
 					maxWidth={'25vh'}

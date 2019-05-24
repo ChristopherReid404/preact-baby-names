@@ -12,6 +12,7 @@ interface Props {
 	minWidth?: string
 	maxHeight: string
 	maxWidth: string
+	style?: object
 	onClick?: (event: any) => void
 }
 
@@ -31,7 +32,8 @@ const Picture = (props: Props) => (
 				minWidth: props.minWidth || props.maxWidth,
 				minHeight: props.minHeight || props.maxHeight,
 				maxWidth: props.maxWidth,
-				maxHeight: props.maxHeight
+				maxHeight: props.maxHeight,
+				...props.style
 			}}
 		/>
 	</picture>
